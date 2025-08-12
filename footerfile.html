@@ -1,44 +1,46 @@
-<div id="chatbot-widget">
-    <button id="chatbot-toggle">💬 Chat</button>
-    <div id="chatbot-window" style="display: none;">
-        <iframe src="https://libabot.liba.edu" 
-                width="350" height="450" frameborder="0"></iframe>
-    </div>
+<!-- Floating Chatbot Widget Button -->
+<div id="chatbot-button">
+    chatbot widget
 </div>
 
 <style>
-    #chatbot-widget {
+    #chatbot-button {
         position: fixed;
-        bottom: 40px;
+        bottom: 30px; /* raised above footer */
         right: 20px;
-        z-index: 99999; /* Highest priority to stay above footer */
+        width: 100px;
+        height: 40px;
+        background-color: #fffdd0; /* cream */
+        color: #000; /* black text for contrast */
+        font-size: 12px; /* small font to fit */
         font-family: Arial, sans-serif;
-    }
-
-    #chatbot-toggle {
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px; /* rounded edges */
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 9999; /* stays above all content */
     }
 
-    #chatbot-window {
-        margin-top: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        border-radius: 10px;
-        overflow: hidden;
+    /* Hover effect */
+    #chatbot-button:hover {
+        background-color: #f5f5c0;
+    }
+
+    /* Mobile-friendly adjustment */
+    @media (max-width: 600px) {
+        #chatbot-button {
+            width: 80px;
+            height: 35px;
+            font-size: 10px;
+        }
     }
 </style>
 
 <script>
-    document.getElementById('chatbot-toggle').addEventListener('click', function () {
-        const chatbotWindow = document.getElementById('chatbot-window');
-        chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'block' : 'none';
+    // Example: Action when clicked
+    document.getElementById("chatbot-button").addEventListener("click", function () {
+        alert("Chatbot will open here!");
     });
 </script>
-
