@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LIBA Chatbot</title>
+  <link rel="stylesheet" href="chatbot.css" /> <!-- your CSS file -->
+</head>
+<body>
+
+<div class="chat-container">
+  <div id="chatbox"></div>
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script>
+  const API_URL = "https://chat.yourdomain.com/chat"; // Flask API endpoint
+
+  document.getElementById("sendBtn").addEventListener("click", sendMessage);
+  document.getElementById("userInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  function appendMessage(sender, text) {
+    const chatbox = document.getElementById("chatbox");
+    const msg = document.createElement("div");
+    msg.className = sender;
+    msg.textContent = text;
+    chatbox.appendChild(msg);
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const inputField = document.getElementById("userInput");
+    const userText = inputField.value.trim();
+    if (!userText) return;
+
+    appendMessage("user-message", userText);
+    inputField.value = "";
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+      });
+
+      const data = await response.json();
+      appendMessage("bot-message", data.reply || "No response from server.");
+    } catch (error) {
+      console.error("Error:", error);
+      appendMessage("bot-message", "⚠️ Error connecting to the chatbot.");
+    }
+  }
+</script>
+
+</body>
+</html>
