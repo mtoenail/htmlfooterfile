@@ -1,0 +1,42 @@
+<div id="chatbot-widget">
+  <div id="chatbot-header">Chat with Us</div>
+  <div id="chatbot-messages"></div>
+  <input id="chatbot-input" type="text" placeholder="Type a message...">
+</div>
+#chatbot-widget {
+  position: fixed;
+  bottom: 20px;      /* Distance from bottom */
+  right: 20px;       /* Distance from right */
+  width: 300px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  z-index: 9999;     /* Always on top */
+}
+
+#chatbot-header {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#chatbot-input {
+  border: none;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  outline: none;
+  width: 100%;
+}
